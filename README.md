@@ -69,11 +69,10 @@ Usage
 Entities
 --------
 
-This trait provide magic methods to handle both OWNING and INVERSE side of bidirectional relationships.
  - Both entities must use `HasRelationships` trait.
  - Both entities must define properties with appropriate doctrine annotations.
  - `cascade={"persist"}` annotation is MANDATORY (will allow bidirectional linking between entities).
- - @method annotation will allow for correct autocomplete in your IDE (optional).
+ - `@method` annotation will allow for correct autocomplete in your IDE (optional).
 
 OneToOne relationships
 ----------------------
