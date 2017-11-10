@@ -1,0 +1,8 @@
+# Enables magic call in symfony propertyAccessor
+# Avoids error when using forms
+# NoSuchProperty exceptions - Neither the property "myproperty" nor one of the methods
+# "getMyproperty()", "isMyproperty()", "hasMyproperty()", "__get()" or "__call()" exist
+services:
+    property_accessor:
+      class: Symfony\Component\PropertyAccess\PropertyAccessor
+      arguments: [true]
