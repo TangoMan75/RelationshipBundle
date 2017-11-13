@@ -171,7 +171,7 @@ use TangoMan\RelationshipBundle\Traits\HasRelationships;
  *
  * @package AppBundle\Entity
  *
- * @method $this setItems(Items $items)
+ * @method $this setItems(Item[] $items)
  */
 class Owner
 {
@@ -206,7 +206,7 @@ use TangoMan\RelationshipBundle\Traits\HasRelationships;
  *
  * @package AppBundle\Entity
  *
- * @method $this setOwners(Owners $owners)
+ * @method $this setOwners(Owner[] $owners)
  */
 class Item
 {
