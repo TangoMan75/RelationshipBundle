@@ -145,9 +145,9 @@ trait HasRelationships
         if ($item) {
             $this->__call('link'.ucfirst($property), [$item]);
             $item->{'link'.$class}($this);
-        } else {
-            $this->__call('unLink'.ucfirst($property), [$item]);
-            $item->{'unLink'.$class}($this);
+        elseif ($item = $this->{'get' . ucfirst($property)}()) {
+            $this->__call('unLink' . ucfirst($property), [$item]);
+            $item->{'unLink' . $class}($this);
         }
 
         return $this;
