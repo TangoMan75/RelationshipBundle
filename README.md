@@ -71,8 +71,9 @@ Entities
 
  - Both entities must use `HasRelationships` trait.
  - Both entities must define properties with appropriate doctrine annotations.
- - `cascade={"persist"}` annotation is MANDATORY (will allow bidirectional linking between entities).
+ - `cascade={"persist"}` annotation is **MANDATORY** (will allow bidirectional linking between entities).
  - `@method` annotation will allow for correct autocomplete in your IDE (optional).
+ - NOTE: `inversedBy` is always on the owning side of the relationship (but I believe you know that already.)
 
 OneToOne relationships
 ----------------------
@@ -96,6 +97,7 @@ use TangoMan\RelationshipBundle\Traits\HasRelationships;
  * @package AppBundle\Entity
  *
  * @method $this setItem(Item $item)
+ * @method Item getItems()
  */
 class Owner
 {
@@ -129,6 +131,7 @@ use TangoMan\RelationshipBundle\Traits\HasRelationships;
  * @package AppBundle\Entity
  *
  * @method $this setOwner(Owner $owner)
+ * @method Owner getOwner()
  */
 class Item
 {
@@ -150,9 +153,9 @@ ManyToMany relationships
 
 ### Entity properties
 
-- Property must own `@var ArrayCollection`
-- Property name MUST use plural form (as it represents several entities)
-- `@ORM\OrderBy({"id"="DESC"})` will allow to define custom orderBy when fetching `items` (optional).
+- Property **must** own `@var ArrayCollection`
+- Property name **MUST** use plural form (as it represents several entities)
+- `@ORM\OrderBy({"name"="ASC"})` will allow to define custom orderBy when fetching `items` (optional).
 
 ```php
 <?php
@@ -172,6 +175,7 @@ use TangoMan\RelationshipBundle\Traits\HasRelationships;
  * @package AppBundle\Entity
  *
  * @method $this setItems(Item[] $items)
+ * @method Item getItems()
  */
 class Owner
 {
@@ -180,11 +184,11 @@ class Owner
     // ...
 
     /**
-     * @var ArrayCollection
+     * @var ArrayCollection|Item[]
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Item", inversedBy="owners", cascade={"persist", "remove"})
-     * @ORM\OrderBy({"id"="DESC"})
+     * @ORM\OrderBy({"name"="ASC"})
      */
-    private $items = [];
+    private $items;
 
     // ...
 ```
@@ -207,6 +211,7 @@ use TangoMan\RelationshipBundle\Traits\HasRelationships;
  * @package AppBundle\Entity
  *
  * @method $this setOwners(Owner[] $owners)
+ * @method Owner getOwners()
  */
 class Item
 {
@@ -215,18 +220,18 @@ class Item
     // ...
 
     /**
-     * @var ArrayCollection
+     * @var ArrayCollection|Owner[]
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Owner", mappedBy="items", cascade={"persist"})
-     * @ORM\OrderBy({"id"="DESC"})
+     * @ORM\OrderBy({"name"="ASC"})
      */
-    private $owners = [];
+    private $owners;
 
     // ...
 ```
 
 ### Entity constructor
 
-Constructors MUST initialize properties with `ArrayCollection`
+Constructors **MUST** initialize properties with `ArrayCollection`
 
 ```php
 <?php
@@ -246,6 +251,7 @@ use TangoMan\RelationshipBundle\Traits\HasRelationships;
     public function __construct()
     {
         // ...
+
         $this->Items = new ArrayCollection();
     }
 ```
