@@ -45,6 +45,26 @@ trait HasRelationships
     }
 
     /**
+     * Return property type or class name
+     *
+     * @param $property
+     *
+     * @return bool|string type or class name; false when property doesn't exist
+     */
+    public function checkPropertyType($property)
+    {
+        if (property_exists($this, $property)) {
+            if (is_object($this->$property)) {
+                return get_class($this->$property);
+            } elseif ($this->$property) {
+                return gettype($this->$property);
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * @param $method
      * @param $arguments
      *
