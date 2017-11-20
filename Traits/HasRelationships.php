@@ -56,7 +56,7 @@ trait HasRelationships
         if (property_exists($this, $property)) {
             if (is_object($this->$property)) {
                 return get_class($this->$property);
-            } elseif ($this->$property) {
+            } else {
                 return gettype($this->$property);
             }
         }
