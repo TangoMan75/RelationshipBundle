@@ -2,7 +2,7 @@
     "name": "tangoman/relationship-bundle",
     "type": "symfony-bundle",
     "description": "Symfony Relationship Bundle",
-    "version": "1.1.0",
+    "version": "1.0.2",
     "license": "MIT",
     "authors": [
         {
