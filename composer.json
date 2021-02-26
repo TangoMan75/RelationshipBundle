@@ -1,0 +1,38 @@
+{
+    "name": "tangoman/relationship-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony Relationship Bundle",
+    "version": "1.1.4",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matthias Morin",
+            "email": "mat@tangoman.io"
+        },
+        {
+            "name": "Fabrice Lazzarotto",
+            "email": "fabrice.lazzarotto@gmail.com"
+        }
+    ],
+    "keywords": [
+        "TangoMan",
+        "Symfony",
+        "Bundle",
+        "OneToOne",
+        "ManyToOne",
+        "OneToMany",
+        "ManyToMany",
+        "Relationships",
+        "Traits"
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "TangoMan\\RelationshipBundle\\": ""
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
